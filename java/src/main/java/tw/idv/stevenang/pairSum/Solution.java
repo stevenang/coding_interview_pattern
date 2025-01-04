@@ -2,6 +2,7 @@ package tw.idv.stevenang.pairSum;
 
 import tw.idv.stevenang.common.TestCase;
 import tw.idv.stevenang.common.TestCaseReader;
+import tw.idv.stevenang.common.TwoSumTestCase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,15 +45,15 @@ public class Solution {
     }
 
     public static void main(String [] args) {
-        List<TestCase> testCases = TestCaseReader.readTestCases("/tw/idv/stevenang/pairSum/data.csv", "\\|");
-        for (TestCase testCase : testCases) {
-            List<Integer> result = Solution.bruteForce(testCase.getDataAsList(), testCase.getTarget());
-            assert result.size() == testCase.getExpectedAsList().size() : "BruteForce: Incorrect result size";
-            assert result.equals(testCase.getExpectedAsList()) : "BruteForce: Incorrect result";
+        List<TwoSumTestCase> testCases = TestCaseReader.readTwoSumTestCases("/tw/idv/stevenang/pairSum/data.csv", "\\|");
+        for (TwoSumTestCase testCase : testCases) {
+            List<Integer> result = Solution.bruteForce(testCase.getData(), testCase.getTarget());
+            assert result.size() == testCase.getExpected().size() : "BruteForce: Incorrect result size";
+            assert result.equals(testCase.getExpected()) : "BruteForce: Incorrect result";
 
-            result = Solution.twoPointers(testCase.getDataAsList(), testCase.getTarget());
-            assert result.size() == testCase.getExpectedAsList().size() : "TwoPointers: Incorrect result size";
-            assert result.equals(testCase.getExpectedAsList()) : "TwoPointers: Incorrect result";
+            result = Solution.twoPointers(testCase.getData(), testCase.getTarget());
+            assert result.size() == testCase.getExpected().size() : "TwoPointers: Incorrect result size";
+            assert result.equals(testCase.getExpected()) : "TwoPointers: Incorrect result";
         }
     }
 }
