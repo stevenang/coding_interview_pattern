@@ -106,4 +106,26 @@ public class TestCaseReader {
 
         return result;
     }
+
+    public static List<IsPalindromeTestCase> readIsPalindromeTestCase(String resourcePath, String delimiter) {
+        List<IsPalindromeTestCase> testCases = new ArrayList<>();
+
+        try (InputStream is = TestCaseReader.class.getResourceAsStream(resourcePath);
+             BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
+
+            String line;
+            br.readLine(); // Skip header
+
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(delimiter);
+                String data = parts[0];
+                boolean expectedResult = Boolean.parseBoolean(parts[1]);
+                testCases.add(new IsPalindromeTestCase(data, expectedResult));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return testCases;
+    }
 }

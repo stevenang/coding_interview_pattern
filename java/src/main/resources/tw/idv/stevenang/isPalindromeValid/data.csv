@@ -1,0 +1,9 @@
+data|expected_result
+""|true
+"a"|true
+"aa"|true
+"ab"|false
+"!, (?)"|true
+"12.02.2021"|true
+"21.02.2021"|false
+"Hello, world!"|false
