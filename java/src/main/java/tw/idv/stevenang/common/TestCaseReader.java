@@ -128,4 +128,26 @@ public class TestCaseReader {
 
         return testCases;
     }
+
+    public static List<LargestContainerTestCase> readLargestContainerTestCase(String resourcePath, String delimiter) {
+        List<LargestContainerTestCase> testCases = new ArrayList<>();
+
+        try (InputStream is = TestCaseReader.class.getResourceAsStream(resourcePath);
+             BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
+
+            String line;
+            br.readLine(); // Skip header
+
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(delimiter);
+                List<Integer> data = parseIntList(parts[0]);
+                Integer expectedResult = Integer.parseInt(parts[1]);
+                testCases.add(new LargestContainerTestCase(data, expectedResult));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return testCases;
+    }
 }
